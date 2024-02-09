@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  description: "This API serves images of f, f', f'',"
+  version: 0.0.1
+  title: Derivation
+  contact:
+    email: jamesacs329@gmail.com
+
+tags:
+  - name: image
+    description: Operations related to images
+paths:
+  /:
+    get:
+      tags:
+        - image
+      summary: Get array of images
+      operationId: getImages
+      responses:
+        "200":
+          description: An array of images
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: binary
+                  example: "base64-encoded-image-data"
