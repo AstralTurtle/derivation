@@ -36,8 +36,14 @@ def generate_plot():
         return images
 
 def generate_response(imgs):
-    fl.jsonify(
-        body=""
+    return fl.jsonify(
+        status = "ok",
+        code=200,
+        messages = ["done"],
+        response = {
+            "images": imgs
+        }
+
     )
 
 
@@ -55,9 +61,10 @@ def index():
         with open(path, 'rb') as f:
             image_base64 = base64.b64encode(f.read()).decode('utf-8')
             image_data.append(image_base64)
-    return fl.jsonify(images=image_data,
-        status=200
-    )    
+    return generate_response(image_data)
+    # fl.jsonify(images=image_data,
+    #     status=200
+    # )    
 
 @app.route('/clear')
 def clear():
@@ -82,6 +89,7 @@ def clear():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    x
     
 
         
