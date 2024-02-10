@@ -53,7 +53,7 @@ CORS(app)
 
 #
 
-@app.route('/')
+@app.route('/random')
 def index():
     paths = generate_plot()
     image_data = []
@@ -69,17 +69,19 @@ def index():
 @app.route('/clear')
 def clear():
     # clear the plots directory
-    folder = './plots'
-    for filename in os.listdir(folder):
-        file_path = os.path.join(folder, filename)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.unlink(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print('Failed to delete %s. Reason: %s' % (file_path, e))
-    return "cleared"
+    files = os.listdir('plots')
+    for file in files:
+        os.remove(f'plots/{file}')
+    return fl.jsonify(
+        status = "ok",
+        code=200,
+        messages = ["done"],
+        response = {
+            "cleared": True
+        }
+
+    )
+    
     
     
     
@@ -89,7 +91,7 @@ def clear():
 
 if __name__ == "__main__":
     app.run(debug=True)
-    x
+    
     
 
         

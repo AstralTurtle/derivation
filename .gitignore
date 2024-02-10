@@ -1,1 +1,2 @@
-./plots/*
+# ignore items in the plots folder
+/plots/*
