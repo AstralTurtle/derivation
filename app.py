@@ -14,11 +14,16 @@ def generate_plot():
         plot_id = uuid.uuid4()
         # generate a random function
         # generate a random degree
-        degree = np.random.randint(3, 6)
+        degree = np.random.randint(3, 5)
+        print(degree)
         #generate random coefficients
         arr = []
+        # make sure that there is at least one non-zero coefficient
         for i in range(degree):
-            arr.append(np.random.randint(-5, 5))
+            arr.append(np.random.randint(-3, 3))
+        # make the first coefficient non-zero
+        if arr[0] == 0:
+            arr[0] = np.random.randint(1, 3)
         f = np.poly1d(arr)
         # test code
         # print(f)
